@@ -1,0 +1,23 @@
+{
+  "name": "placeit",
+  "version": "1.0.0",
+  "description": "Campus placement prep portal for engineering students",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shikha1522/placeit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shikha1522/placeit/issues"
+  },
+  "homepage": "https://github.com/shikha1522/placeit#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}

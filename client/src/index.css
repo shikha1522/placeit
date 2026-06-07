@@ -1,0 +1,166 @@
+/* ─────────────────────────────────────────────────────────
+   placeIT — Global Dark Theme
+   CSS variables defined here control the entire app's look
+   change one variable here = updates everywhere in the app
+───────────────────────────────────────────────────────── */
+
+:root {
+  /* backgrounds — 3 levels of darkness */
+  --bg-primary:    #0f0f0f;  /* main page background */
+  --bg-secondary:  #1a1a1a;  /* cards and panels */
+  --bg-tertiary:   #242424;  /* inputs and hover states */
+
+  /* accent colours */
+  --accent:        #3b82f6;  /* primary blue — buttons, links */
+  --accent-hover:  #2563eb;  /* darker on hover */
+  --accent-green:  #22c55e;  /* solved / success */
+  --accent-red:    #ef4444;  /* error / rejected */
+  --accent-yellow: #f59e0b;  /* pending / medium */
+  --accent-purple: #a855f7;  /* contests / badges */
+
+  /* text — 3 levels */
+  --text-primary:   #ffffff;  /* main headings */
+  --text-secondary: #a1a1aa;  /* descriptions */
+  --text-tertiary:  #52525b;  /* placeholders */
+
+  /* borders */
+  --border:       #2a2a2a;
+  --border-hover: #3f3f3f;
+
+  /* border radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+/* ─── Reset ──────────────────────────────────────────────
+   removes all default browser margin/padding/styling     */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ─── Typography ─────────────────────────────────────── */
+h1 { font-size: 2rem;   font-weight: 700; }
+h2 { font-size: 1.5rem; font-weight: 600; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+h4 { font-size: 1rem;   font-weight: 600; }
+p  { color: var(--text-secondary); line-height: 1.7; }
+a  { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+/* ─── Buttons ────────────────────────────────────────── */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+/* main action buttons — login, submit, apply */
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* secondary buttons — cancel, back */
+.btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--border-hover); }
+
+/* danger buttons — delete, reject */
+.btn-danger { background: var(--accent-red); color: #fff; }
+.btn-danger:hover { opacity: 0.85; }
+
+/* ─── Inputs ─────────────────────────────────────────── */
+input, textarea, select {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+}
+input::placeholder { color: var(--text-tertiary); }
+
+/* ─── Cards ──────────────────────────────────────────── */
+/* add className="card" to any box/panel in the UI       */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--border-hover); }
+
+/* ─── Badges ─────────────────────────────────────────── */
+/* add className="badge badge-easy" on difficulty tags   */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.badge-easy   { background: #14532d; color: var(--accent-green); }
+.badge-medium { background: #451a03; color: var(--accent-yellow); }
+.badge-hard   { background: #450a0a; color: var(--accent-red); }
+.badge-blue   { background: #1e3a5f; color: var(--accent); }
+.badge-purple { background: #3b0764; color: var(--accent-purple); }
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+/* ─── Utility Classes ────────────────────────────────── */
+/* use directly in JSX className for quick styling       */
+.text-muted   { color: var(--text-secondary); }
+.text-accent  { color: var(--accent); }
+.text-green   { color: var(--accent-green); }
+.text-red     { color: var(--accent-red); }
+.text-yellow  { color: var(--accent-yellow); }
+.text-purple  { color: var(--accent-purple); }
+.text-center  { text-align: center; }
+.flex         { display: flex; }
+.flex-center  { display: flex; align-items: center; justify-content: center; }
+.gap-1  { gap: 0.5rem; }
+.gap-2  { gap: 1rem; }
+.mt-1   { margin-top: 0.5rem; }
+.mt-2   { margin-top: 1rem; }
+.mt-3   { margin-top: 1.5rem; }
+.mb-1   { margin-bottom: 0.5rem; }
+.mb-2   { margin-bottom: 1rem; }
+.w-full { width: 100%; }
