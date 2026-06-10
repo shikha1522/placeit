@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import './config/db.js';
 
 // loads all variables from .env into process.env
 // must be called before anything else — order matters here
