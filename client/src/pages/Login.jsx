@@ -3,7 +3,8 @@
 // left = illustration panel, right = login form
 
 import { useState } from 'react'; // useState lets us track form input values
-import { Link } from 'react-router-dom'; // Link is used instead of <a> so React handles navigation without page reload
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Link is used instead of <a> so React handles navigation without page reload
 import '../styles/Auth.css'; // all styles specific to login/register pages
 
 const Login = () => {
@@ -17,6 +18,9 @@ const Login = () => {
     password: '',
   });
 
+  const { login } = useAuth();
+const navigate = useNavigate();
+
   // handleChange fires on every keystroke — updates only the field that changed
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,9 +28,14 @@ const Login = () => {
   };
 
   // handleSubmit fires when user clicks Login — will call backend in Phase 3
-  const handleSubmit = (e) => {
-    e.preventDefault(); // prevents browser from reloading the page on form submit
-    console.log('Login submitted:', formData); // placeholder until auth API is ready
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(formData);
+      navigate('/dashboard');
+    } catch (err) {
+      alert(err.response?.data?.message || 'Login failed');
+    }
   };
 
   return (

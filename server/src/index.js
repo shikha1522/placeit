@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes.js'; // import the routes
 import './config/db.js';
 
 // loads all variables from .env into process.env
@@ -26,6 +27,9 @@ app.use(cors({
 // without this req.body is always undefined
 // example: when React sends { email, password }, this makes req.body work
 app.use(express.json());
+app.use('/api/auth', authRoutes);
+// this means all routes in authRoutes.js are prefixed with /api/auth
+// so router.post('/register') becomes POST /api/auth/register
 
 // ─── Routes ──────────────────────────────────────────────────
 // we will import and add more routes here as we build each feature

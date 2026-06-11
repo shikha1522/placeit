@@ -2,7 +2,8 @@
 // Same split layout as Login but with extra fields: name, branch, year
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/Auth.css'; // shares the same stylesheet as Login
 
 const Register = () => {
@@ -16,13 +17,21 @@ const Register = () => {
     password: '',
   });
 
+  const { register } = useAuth();
+const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Register submitted:', formData); // placeholder for Phase 3 API call
+    try {
+      await register(formData);
+      navigate('/dashboard');
+    } catch (err) {
+      alert(err.response?.data?.message || 'Registration failed');
+    }
   };
 
   return (
