@@ -1,0 +1,333 @@
+/* Auth.css — styles for Login.jsx and Register.jsx
+   Uses the dark theme CSS variables already defined in index.css */
+
+/* ── root split layout ── */
+.auth-root {
+  display: flex;               /* side by side: left panel + right panel */
+  min-height: 100vh;           /* full screen height */
+  background: var(--bg-primary); /* #0f0f0f */
+}
+
+/* ── LEFT PANEL ── */
+.auth-left {
+  flex: none;                  /* don't grow/shrink, use fixed width */
+  width: 55%;                  /* exactly 35% of screen */
+  background: #141414;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* placeIT logo — big and bold */
+.auth-logo {
+  font-size: 38px;             /* bigger than default — per design spec */
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.badge-dot.purple { background: var(--accent-purple); }
+.badge-dot.amber  { background: var(--accent-yellow); }
+/* blue IT highlight */
+.auth-logo span {
+  color: var(--accent);        /* #3b82f6 */
+}
+
+/* ── status badge row ── */
+.auth-badges {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;             /* wraps on small screens */
+}
+
+.auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;         /* pill shape */
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* colored dot inside each badge */
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.badge-dot.green  { background: var(--accent-green); }
+.badge-dot.blue   { background: var(--accent);       }
+
+/* ── illustration section ── */
+.auth-illustration {
+  flex: 1;                     /* pushes tagline down */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* wrapper that positions orbs relative to the card */
+.illus-inner {
+  position: relative;
+}
+
+/* floating circular orb labels */
+.orb {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+.orb-blue   { background: var(--accent); }
+.orb-green  { background: var(--accent-green); }
+.orb-amber  { background: var(--accent-yellow); }
+.orb-purple { background: var(--accent-purple); }
+
+/* robot emoji above the card */
+.illus-robot {
+  position: absolute;
+  top: -68px;          /* was -48px, push up more for bigger robot */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 34px;     /* doesn't matter now but keep it */
+}
+
+/* fake dashboard card */
+.illus-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 180px;
+  height: 130px;
+  padding: 12px;
+}
+
+/* fake text lines inside the card */
+.illus-line {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bg-tertiary);
+  margin-bottom: 7px;
+}
+.illus-line.short { width: 55%; }
+
+/* colored mini buttons at the bottom of the card */
+.illus-btn-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.illus-btn {
+  height: 18px;
+  border-radius: 4px;
+  flex: 1;
+}
+.illus-btn.green  { background: var(--accent-green); }
+.illus-btn.blue   { background: var(--accent); }
+.illus-btn.purple { background: var(--accent-purple); }
+
+/* ── tagline below illustration ── */
+.auth-tagline {
+  text-align: center;
+  margin-top: 18px;
+}
+.auth-tagline h2 {
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.auth-tagline p {
+  color: var(--text-tertiary);
+  font-size: 19px;
+  margin-top: 4px;
+}
+
+/* ── RIGHT PANEL ── */
+.auth-right {
+  width: 45%;                /* fixed width for form panel */
+  background: var(--bg-primary);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-welcome {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.auth-sub {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+/* ── form fields ── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-wrap {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* two fields side by side (branch + year) */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.auth-input {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.auth-input:focus {
+  border-color: var(--accent);  /* blue highlight on focus */
+}
+.auth-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* select dropdown inherits input styles */
+.auth-select {
+  appearance: none;            /* removes default browser arrow */
+  cursor: pointer;
+}
+
+/* wrapper to position the show/hide button inside the input */
+.pw-wrap {
+  position: relative;
+}
+.pw-wrap .auth-input {
+  padding-right: 50px;         /* makes room for the show button */
+}
+
+.show-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.forgot-wrap {
+  text-align: right;
+  margin-top: -6px;
+  margin-bottom: 16px;
+}
+.forgot-link {
+  font-size: 12px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+/* big white login/register button */
+.auth-submit-btn {
+  width: 100%;
+  background: var(--text-primary); /* white */
+  color: #000000;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: opacity 0.2s;
+}
+.auth-submit-btn:hover {
+  opacity: 0.9;
+}
+
+.auth-or {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-bottom: 14px;
+}
+
+/* Google + GitHub social buttons */
+.auth-social-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.social-btn {
+  flex: 1;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: border-color 0.2s;
+}
+.social-btn:hover {
+  border-color: var(--border-hover);
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+.auth-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* ── responsive — stack on small screens ── */
+@media (max-width: 768px) {
+  .auth-root    { flex-direction: column; }
+  .auth-left    { min-height: 300px; border-right: none; border-bottom: 1px solid var(--border); }
+  .auth-right   { width: 100%; padding: 32px 20px; }
+  .field-row    { grid-template-columns: 1fr; } /* stack branch+year on mobile */
+}
