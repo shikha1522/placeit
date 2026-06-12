@@ -1,0 +1,174 @@
+/* Sidebar.css */
+/* Fixed left navigation panel */
+/* Desktop: always visible | Mobile: slides in on toggle */
+
+/* ── Sidebar container ── */
+.sidebar {
+  position: fixed;            /* stays fixed while page scrolls */
+  top: 0;
+  left: 0;
+  width: 220px;               /* fixed sidebar width */
+  height: 100vh;              /* full viewport height */
+  background: var(--bg-secondary); /* #1a1a1a slightly lighter than page */
+  border-right: 1px solid var(--border); /* subtle right border */
+  display: flex;
+  flex-direction: column;     /* logo → nav → user stacked vertically */
+  z-index: 100;               /* above page content */
+  transition: transform 0.3s ease; /* smooth slide animation on mobile */
+  overflow-y: auto;           /* scroll if nav items overflow */
+}
+
+/* ── Logo area ── */
+.sidebar-logo {
+  padding: 28px 20px 24px;    /* generous top padding */
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;             /* don't shrink when sidebar is short */
+}
+
+/* "placeIT" logo text */
+.logo-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);  /* white */
+  letter-spacing: -0.5px;
+}
+
+/* "IT" accent in blue */
+.logo-accent {
+  color: var(--accent);        /* #3b82f6 blue */
+}
+
+/* ── Navigation section ── */
+.sidebar-nav {
+  flex: 1;                    /* takes all space between logo and user */
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;                   /* small gap between nav items */
+}
+
+/* ── Individual nav link ── */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;                  /* space between icon and label */
+  padding: 10px 20px;
+  color: var(--text-secondary); /* grey by default */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+  position: relative;
+}
+
+/* Hover state */
+.sidebar-link:hover {
+  background: var(--bg-tertiary); /* slightly lighter background */
+  color: var(--text-primary);     /* white text on hover */
+}
+
+/* ── Active link (current page) ── */
+/* Left accent bar + blue color like LeetCode */
+.sidebar-link--active {
+  color: var(--accent);           /* blue text */
+  background: rgba(59, 130, 246, 0.08); /* very subtle blue bg */
+}
+
+/* Active left border bar */
+.sidebar-link--active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);      /* blue left bar */
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── Icon inside nav link ── */
+.sidebar-link-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;             /* icon stays fixed size */
+}
+
+/* SVG icon sizing */
+.sidebar-link-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Nav link label text ── */
+.sidebar-link-label {
+  white-space: nowrap;        /* don't wrap text */
+}
+
+/* ── User info section (bottom of sidebar) ── */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;             /* stays at bottom */
+}
+
+/* Avatar circle with initials */
+.sidebar-avatar {
+  width: 36px;
+  height: 36px;
+  background: var(--accent);  /* blue circle */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* User text info */
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;               /* allow text to truncate */
+}
+
+/* User name */
+.sidebar-user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;    /* "Vanshi..." if too long */
+}
+
+/* Role + branch subtitle */
+.sidebar-user-branch {
+  font-size: 11px;
+  color: var(--text-tertiary); /* dim grey */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ══════════════════════════════
+   RESPONSIVE: Mobile (≤ 900px)
+══════════════════════════════ */
+@media (max-width: 900px) {
+  /* Sidebar hidden off-screen by default on mobile */
+  .sidebar {
+    transform: translateX(-100%); /* slide left, out of view */
+    z-index: 200;               /* above overlay */
+  }
+
+  /* When .open class is added (hamburger clicked): slide in */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,66 @@
+/* DashboardLayout.css */
+/* Shell layout: sidebar (fixed left) + main area (right) */
+/* Fully responsive — sidebar collapses on mobile */
+
+/* ── Root layout container ── */
+/* Uses flexbox: sidebar on left, main content takes remaining space */
+.layout-root {
+  display: flex;              /* side by side: sidebar + main */
+  min-height: 100vh;          /* full viewport height */
+  background: var(--bg-primary); /* #0f0f0f dark background */
+  position: relative;         /* for overlay positioning */
+}
+
+/* ── Main area (navbar + page content) ── */
+.layout-main {
+  flex: 1;                    /* takes all remaining width after sidebar */
+  display: flex;
+  flex-direction: column;     /* navbar on top, content below */
+  min-width: 0;               /* prevents flex overflow on small screens */
+  /* On desktop: offset by sidebar width so it doesn't go under it */
+  margin-left: 220px;
+  transition: margin-left 0.3s ease; /* smooth when sidebar width changes */
+}
+
+/* ── Page content area ── */
+.layout-content {
+  flex: 1;                    /* fills remaining height below navbar */
+  padding: 24px;              /* inner spacing */
+  overflow-y: auto;           /* scroll if content overflows */
+}
+
+/* ── Dark overlay behind sidebar on mobile ── */
+/* Appears when sidebar is open; clicking it closes the sidebar */
+.sidebar-overlay {
+  display: none;              /* hidden on desktop */
+}
+
+/* ══════════════════════════════
+   RESPONSIVE: Tablet (≤ 900px)
+══════════════════════════════ */
+@media (max-width: 900px) {
+  /* On tablet/mobile: main area takes full width */
+  /* Sidebar slides over content (not push layout) */
+  .layout-main {
+    margin-left: 0;           /* sidebar is overlaid, not pushing */
+  }
+}
+
+/* ══════════════════════════════
+   RESPONSIVE: Mobile (≤ 600px)
+══════════════════════════════ */
+@media (max-width: 600px) {
+  /* Reduce padding on small screens */
+  .layout-content {
+    padding: 16px 12px;
+  }
+
+  /* Show dark overlay when sidebar is open */
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;                 /* top:0 right:0 bottom:0 left:0 */
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;              /* above content, below sidebar */
+  }
+}

@@ -1,0 +1,137 @@
+/* Navbar.css */
+/* Top navigation bar — sticks to top of the main content area */
+
+/* ── Navbar container ── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;               /* fixed height */
+  background: var(--bg-secondary); /* #1a1a1a */
+  border-bottom: 1px solid var(--border);
+  position: sticky;           /* sticks to top as user scrolls */
+  top: 0;
+  z-index: 50;                /* above page content, below sidebar */
+  flex-shrink: 0;             /* don't shrink in flex column layout */
+}
+
+/* ── Hamburger menu button (mobile only) ── */
+.navbar-menu-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: none;              /* hidden on desktop */
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.navbar-menu-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.navbar-menu-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ── Center welcome area ── */
+.navbar-center {
+  flex: 1;                    /* fills space between left and right */
+  padding: 0 16px;
+}
+
+/* Welcome text + date row */
+.navbar-welcome {
+  display: flex;
+  align-items: baseline;      /* align text on baseline */
+  gap: 16px;
+  flex-wrap: wrap;            /* wrap on small screens */
+}
+
+/* "Welcome back, Vanshika 👋" */
+.navbar-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* "Thursday, June 11" */
+.navbar-date {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ── Right side: logout ── */
+.navbar-right {
+  flex-shrink: 0;             /* don't shrink */
+}
+
+/* Logout button */
+.navbar-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.navbar-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.1); /* subtle red tint on hover */
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+.navbar-logout-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Hide "Logout" text label on very small screens, keep icon */
+@media (max-width: 420px) {
+  .navbar-logout-btn span {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════
+   RESPONSIVE: Mobile (≤ 900px)
+══════════════════════════════ */
+@media (max-width: 900px) {
+  /* Show hamburger button on mobile */
+  .navbar-menu-btn {
+    display: flex;
+  }
+
+  /* Slightly smaller title on mobile */
+  .navbar-title {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Reduce navbar padding on mobile */
+  .navbar {
+    padding: 0 12px;
+  }
+
+  /* Hide date on very small screens */
+  .navbar-date {
+    display: none;
+  }
+}

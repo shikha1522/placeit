@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes.js'; // import the routes
+import authRoutes from './routes/authRoutes.js';
+import dashboardRoutes from './routes/dashboardRoutes.js'; // import the routes
 import './config/db.js';
 
 // loads all variables from .env into process.env
@@ -28,6 +29,7 @@ app.use(cors({
 // example: when React sends { email, password }, this makes req.body work
 app.use(express.json());
 app.use('/api/auth', authRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 // this means all routes in authRoutes.js are prefixed with /api/auth
 // so router.post('/register') becomes POST /api/auth/register
 

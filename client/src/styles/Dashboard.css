@@ -1,0 +1,462 @@
+/* Dashboard.css */
+/* Styles for the main Dashboard page content */
+/* Matches the LeetCode-style dark design from your screenshots */
+
+/* ── Dashboard root container ── */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;                  /* vertical spacing between sections */
+  max-width: 1200px;          /* max width to avoid too-wide layout on large screens */
+}
+
+/* ════════════════════════════════
+   NOTIFICATION PILLS BAR
+   "Amazon visiting · 3 days left" etc.
+════════════════════════════════ */
+.dashboard-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;            /* pills wrap to next line on small screens */
+}
+
+/* Individual pill */
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;        /* fully rounded pill shape */
+  white-space: nowrap;        /* don't wrap text inside pill */
+}
+
+/* Colored dot inside pill */
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Pill color variants ── */
+/* Green (success) */
+.pill--green {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--accent-green);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+.pill--green .pill-dot { background: var(--accent-green); }
+
+/* Blue (info) */
+.pill--blue {
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+.pill--blue .pill-dot { background: var(--accent); }
+
+/* Yellow (warning) */
+.pill--yellow {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--accent-yellow);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.pill--yellow .pill-dot { background: var(--accent-yellow); }
+
+/* ════════════════════════════════
+   STATS GRID
+   4 cards in a row
+════════════════════════════════ */
+.stats-grid {
+  display: grid;
+  /* 4 equal columns on desktop, auto-adjusts on smaller screens */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* Individual stat card */
+.stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.2s ease; /* hover effect */
+}
+
+.stat-card:hover {
+  border-color: #3a3a3a;      /* subtle highlight on hover */
+}
+
+/* Stat label ("DSA Solved") */
+.stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Big stat number */
+.stat-value {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums; /* numbers align in columns */
+}
+
+/* Color variants for stat values */
+.stat-value--green  { color: var(--accent-green); }
+.stat-value--blue   { color: var(--accent); }
+.stat-value--red    { color: var(--accent-red); }
+.stat-value--purple { color: var(--accent-purple); }
+
+/* Sub-text below number ("of 300 questions") */
+.stat-sub {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* ════════════════════════════════
+   MID GRID: Donut Chart + Companies
+   Two cards side by side
+════════════════════════════════ */
+.mid-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: 16px;
+}
+
+/* ── Generic card (used by donut + companies + activity) ── */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* Card title ("DSA Progress") */
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Donut chart area ── */
+/* Donut SVG + legend side by side */
+.donut-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* SVG donut chart */
+.donut-chart {
+  flex-shrink: 0;
+}
+
+/* Legend list */
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Single legend row: "● Easy · 20" */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Colored dot in legend */
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legend-dot--green  { background: var(--accent-green); }
+.legend-dot--yellow { background: var(--accent-yellow); }
+.legend-dot--red    { background: var(--accent-red); }
+
+/* ════════════════════════════════
+   UPCOMING COMPANIES LIST
+════════════════════════════════ */
+.company-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Single company row */
+.company-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Remove border from last item */
+.company-item:last-child {
+  border-bottom: none;
+}
+
+/* Company name ("Amazon") */
+.company-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Right side: role tag + days left */
+.company-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Role tag badge ("SDE", "Intern") */
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Tag color variants */
+.tag--blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent);
+}
+.tag--yellow {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--accent-yellow);
+}
+.tag--purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--accent-purple);
+}
+
+/* "3 days" countdown text */
+.company-days {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  min-width: 50px;
+  text-align: right;
+}
+
+/* ════════════════════════════════
+   RECENT ACTIVITY FEED
+════════════════════════════════ */
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Single activity row */
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+/* Type icon (colored circle/badge) */
+.activity-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Icon color variants */
+.activity-icon--green {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--accent-green);
+}
+.activity-icon--blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent);
+}
+.activity-icon--purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--accent-purple);
+}
+
+/* Description text */
+.activity-desc {
+  flex: 1;                    /* fills space between icon and time */
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Bold the important part: question name, company name */
+.activity-desc strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* "2h ago" timestamp */
+.activity-time {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════
+   EMPTY STATES
+════════════════════════════════ */
+.empty-state {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: 24px 0;
+  margin: 0;
+}
+
+/* ════════════════════════════════
+   LOADING SKELETONS
+   Pulse animation while data loads
+════════════════════════════════ */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.dashboard-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Skeleton base style */
+.skeleton-pill,
+.skeleton-card,
+.skeleton-donut,
+.skeleton-list {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-pill {
+  height: 32px;
+  width: 300px;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.skeleton-card {
+  height: 100px;
+}
+
+.skeleton-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.skeleton-donut { height: 200px; }
+.skeleton-list  { height: 200px; }
+
+/* ── Error state ── */
+.dashboard-error {
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-red);
+  border-radius: 12px;
+  padding: 24px;
+  color: var(--accent-red);
+  font-size: 14px;
+}
+
+.dashboard-error p { margin: 0 0 8px; }
+
+/* ════════════════════════════════
+   RESPONSIVE: Tablet (≤ 900px)
+════════════════════════════════ */
+@media (max-width: 900px) {
+  /* Stats: 2 per row on tablet */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ════════════════════════════════
+   RESPONSIVE: Mobile (≤ 600px)
+════════════════════════════════ */
+@media (max-width: 600px) {
+  /* Mid grid: stack vertically */
+  .mid-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Stats: 2 per row still fits on mobile */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* Smaller stat numbers on mobile */
+  .stat-value {
+    font-size: 28px;
+  }
+
+  /* Donut: stack vertically on very small screens */
+  .donut-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  /* Skeleton grid: 2 cols on mobile */
+  .skeleton-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skeleton-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ════════════════════════════════
+   RESPONSIVE: Very small (≤ 360px)
+════════════════════════════════ */
+@media (max-width: 360px) {
+  /* Stats: 1 per row on tiny phones */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
