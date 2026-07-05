@@ -1,0 +1,530 @@
+/* Profile.css — all styles for the profile page */
+
+/* ── Page wrapper ── */
+.profile-page {
+  padding: 24px;                        /* spacing from edges */
+  max-width: 1100px;                    /* max width for large screens */
+  margin: 0 auto;                       /* center on large screens */
+  position: relative;                   /* for toast positioning */
+}
+
+/* ── Toast notification ── */
+.profile-toast {
+  position: fixed;                      /* fixed on screen */
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 999;                         /* above everything */
+  animation: slideIn 0.3s ease;        /* slide in animation */
+}
+
+/* success toast */
+.profile-toast.success {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid var(--accent-green);
+  color: var(--accent-green);
+}
+
+/* error toast */
+.profile-toast.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid var(--accent-red);
+  color: var(--accent-red);
+}
+
+/* toast slide in animation */
+@keyframes slideIn {
+  from { transform: translateX(100px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* ── Page header ── */
+.profile-header {
+  margin-bottom: 24px;
+}
+
+.profile-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.profile-subtitle {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* ── Main grid layout ── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;    /* left panel fixed, right takes rest */
+  gap: 20px;
+  align-items: start;                  /* cards align to top */
+}
+
+/* ── Card base style ── */
+.profile-card {
+  background: var(--bg-secondary);     /* #1a1a1a */
+  border: 1px solid var(--border);     /* #2a2a2a */
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.profile-card:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Left panel ── */
+.profile-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Avatar card ── */
+.avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 20px;
+}
+
+/* avatar clickable wrapper */
+.profile-avatar-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  cursor: pointer;                      /* pointer cursor to hint clickable */
+  margin-bottom: 14px;
+}
+
+/* actual avatar image */
+.profile-avatar-img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;                   /* crop image to circle */
+  border: 3px solid var(--accent);
+}
+
+/* initials fallback circle */
+.profile-avatar-initials {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.15);
+  border: 3px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* camera overlay on hover */
+.profile-avatar-overlay {
+  position: absolute;
+  inset: 0;                            /* cover entire avatar */
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;                          /* hidden by default */
+  transition: opacity 0.2s ease;
+  color: white;
+}
+
+/* show overlay on hover */
+.profile-avatar-wrap:hover .profile-avatar-overlay {
+  opacity: 1;
+}
+
+/* user name below avatar */
+.profile-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+/* role badge */
+.profile-role-badge {
+  font-size: 11px;
+  color: var(--accent);
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  margin-bottom: 16px;
+}
+
+/* profile completion section */
+.profile-completion {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.completion-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.completion-percent {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* completion progress bar track */
+.completion-bar {
+  width: 100%;
+  height: 5px;
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* completion progress fill */
+.completion-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.4s ease;         /* smooth width animation */
+}
+
+/* member since text */
+.profile-since {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* ── Social card ── */
+.social-card {
+  padding: 16px 20px;
+}
+
+/* card section title */
+.card-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* social link row */
+.social-link-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  transition: color 0.15s ease;
+  overflow: hidden;                    /* prevent url overflow */
+}
+
+.social-link-row:last-child {
+  border-bottom: none;
+}
+
+.social-link-row:hover {
+  color: var(--text-primary);
+}
+
+/* social icon colored circle */
+.social-icon-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.social-icon-wrap.github   { background: rgba(255,255,255,0.08); color: #fff; }
+.social-icon-wrap.linkedin { background: rgba(10,102,194,0.2);  color: #0a66c2; }
+.social-icon-wrap.phone    { background: rgba(168,85,247,0.15); color: var(--accent-purple); }
+
+/* ── Right panel ── */
+.profile-right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Tabs ── */
+.profile-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.profile-tab {
+  flex: 1;                             /* equal width tabs */
+  padding: 8px 12px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* active tab */
+.profile-tab.active {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent);
+}
+
+.profile-tab:hover:not(.active) {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* ── Form elements ── */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;     /* two column form grid */
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-label {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  background: var(--bg-tertiary);     /* #242424 */
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  transition: border-color 0.15s ease;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-input:focus {
+  border-color: var(--accent);         /* blue border on focus */
+}
+
+.form-input:disabled {
+  opacity: 0.5;                        /* dim disabled fields */
+  cursor: not-allowed;
+}
+
+/* select dropdown styling */
+.form-input option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* ── Form actions (save button row) ── */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  gap: 10px;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Skills ── */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  min-height: 40px;                    /* keep height when empty */
+}
+
+.skills-empty {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+/* skill pill */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* skill remove button */
+.skill-remove {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.skill-remove:hover {
+  opacity: 1;
+}
+
+/* skill add input row */
+.skill-add-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.skill-add-row .form-input {
+  flex: 1;
+  margin: 0;
+}
+
+/* ── Password match indicator ── */
+.password-match {
+  font-size: 12px;
+  margin: -6px 0 12px;
+}
+
+.password-match.match   { color: var(--accent-green); }
+.password-match.no-match { color: var(--accent-red); }
+
+/* ── Loading state ── */
+.profile-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 16px;
+  color: var(--text-tertiary);
+}
+
+.profile-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — Tablet (≤ 900px)
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .profile-grid {
+    grid-template-columns: 1fr;        /* stack panels vertically */
+  }
+
+  .profile-left {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    /* avatar + social side by side */
+    gap: 16px;
+  }
+
+  .profile-left .profile-card {
+    margin-bottom: 0;
+  }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — Mobile (≤ 600px)
+══════════════════════════════════════ */
+@media (max-width: 600px) {
+  .profile-page {
+    padding: 16px;                     /* less padding on mobile */
+  }
+
+  .profile-left {
+    grid-template-columns: 1fr;        /* stack on mobile */
+  }
+
+  .form-grid-2 {
+    grid-template-columns: 1fr;        /* single column form on mobile */
+  }
+
+  .profile-tabs {
+    gap: 2px;
+  }
+
+  .profile-tab {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+
+  .profile-toast {
+    right: 12px;
+    left: 12px;                        /* full width toast on mobile */
+    text-align: center;
+  }
+}

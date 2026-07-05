@@ -31,4 +31,15 @@ const protect = (req, res, next) => {
   }
 };
 
+// adminOnly middleware — runs AFTER protect
+// protect sets req.user, this checks if that user is admin
+const adminOnly = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: 'Admin access only' });
+  }
+  next();
+};
+
+// export both so routes can use: import { protect, adminOnly }
+export { protect, adminOnly };
 export default protect;

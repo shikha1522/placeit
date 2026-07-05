@@ -1,0 +1,523 @@
+/* ── Companies page wrapper ── */
+.companies-page {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* header row: title left, add button right */
+.companies-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ── Filters bar ── */
+.companies-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.search-input {
+  padding-left: 32px !important;      /* room for search icon */
+}
+
+.filter-select {
+  min-width: 130px;
+  flex-shrink: 0;
+}
+
+/* ── Cards grid ── */
+.companies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* ── Company card ── */
+.company-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.company-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* eligible card gets subtle green border */
+.company-card--eligible {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.company-card--eligible:hover {
+  border-color: var(--accent-green);
+}
+
+/* card top row: avatar + info + status */
+.company-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* company letter avatar */
+.company-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.company-card-info {
+  flex: 1;
+  min-width: 0;                        /* allow text truncation */
+}
+
+.company-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.company-role {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* ── Status badge ── */
+.status-badge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+
+.status-blue  { background: rgba(59,130,246,0.12); color: var(--accent);        border: 1px solid rgba(59,130,246,0.3); }
+.status-green { background: rgba(34,197,94,0.12);  color: var(--accent-green);  border: 1px solid rgba(34,197,94,0.3); }
+.status-red   { background: rgba(239,68,68,0.12);  color: var(--accent-red);    border: 1px solid rgba(239,68,68,0.3); }
+
+/* card meta row: CTC, location, date */
+.company-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.meta-item {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* card footer: eligibility + cgpa + admin actions */
+.company-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+/* eligibility pill */
+.eligibility-pill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+
+.pill-green { background: rgba(34,197,94,0.12);  color: var(--accent-green); border: 1px solid rgba(34,197,94,0.3); }
+.pill-red   { background: rgba(239,68,68,0.12);  color: var(--accent-red);   border: 1px solid rgba(239,68,68,0.3); }
+
+.company-card-cgpa {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-left: auto;
+}
+
+/* admin edit/delete icon buttons */
+.admin-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+
+.btn-icon--edit:hover   { background: rgba(59,130,246,0.15); }
+.btn-icon--delete:hover { background: rgba(239,68,68,0.15); }
+
+/* ── Empty state ── */
+.companies-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+/* ══════════════════════════════
+   MODAL
+══════════════════════════════ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-box--detail {
+  max-width: 520px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 0;
+}
+
+.modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.modal-close:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+
+.modal-body {
+  padding: 16px 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ghost/cancel button */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.btn-ghost:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+
+/* AI autofill button */
+.btn-autofill {
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.3);
+  color: var(--accent-purple);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  align-self: flex-end;
+  transition: opacity 0.15s;
+}
+
+.btn-autofill:hover    { opacity: 0.8; }
+.btn-autofill:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* name + autofill row */
+.modal-name-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+
+/* 3-column form grid */
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* textarea */
+.form-textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+/* branch checkboxes */
+.branch-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.branch-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+  transition: border-color 0.15s;
+}
+
+.branch-check:hover { border-color: var(--accent); color: var(--text-primary); }
+.branch-check input { accent-color: var(--accent); }
+
+/* interview rounds */
+.rounds-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.round-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245,158,11,0.1);
+  color: var(--accent-yellow);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.round-num {
+  background: rgba(245,158,11,0.2);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* ── Detail modal specific ── */
+.eligibility-banner {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.eligibility-banner.eligible {
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.3);
+}
+
+.eligibility-banner.not-eligible {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+}
+
+.eligibility-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.eligible .eligibility-icon     { color: var(--accent-green); }
+.not-eligible .eligibility-icon { color: var(--accent-red); }
+
+.eligibility-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.eligible .eligibility-title     { color: var(--accent-green); }
+.not-eligible .eligibility-title { color: var(--accent-red); }
+
+.eligibility-reasons {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 12px;
+  color: var(--accent-red);
+}
+
+.eligibility-reasons li { margin-bottom: 2px; }
+
+/* detail key-value grid */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.detail-item {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.detail-label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.detail-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.ctc-value { color: var(--accent-green); }
+
+.detail-section { margin-bottom: 16px; }
+
+.detail-section-title {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+
+.detail-description {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* branch tags in detail */
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.branch-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* highlight user's own branch */
+.branch-tag--match {
+  background: rgba(59,130,246,0.12);
+  border-color: rgba(59,130,246,0.3);
+  color: var(--accent);
+}
+
+/* rounds in detail view */
+.rounds-detail { display: flex; flex-direction: column; gap: 6px; }
+
+.round-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .companies-page  { padding: 16px; }
+  .companies-grid  { grid-template-columns: 1fr; }
+  .form-grid-3     { grid-template-columns: 1fr 1fr; }
+  .companies-filters { flex-direction: column; }
+  .filter-select   { width: 100%; }
+  .detail-grid     { grid-template-columns: 1fr; }
+}

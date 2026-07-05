@@ -1,10 +1,12 @@
 // App.jsx
+import ProtectedRoute from './components/ProtectedRoute';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { useAuth } from './context/AuthContext';
-
+import Profile from './pages/Profile';
 // ── Layouts ──
 import DashboardLayout from './layouts/DashboardLayout';
+import Companies from './pages/Companies';
 
 // ── Public pages (already exist) ──
 import Login from './pages/Login';
@@ -12,6 +14,8 @@ import Register from './pages/Register';
 
 // ── Protected pages (new) ──
 import Dashboard from './pages/Dashboard';
+import DSA from './pages/DSA';
+import BulkUpload from './pages/BulkUpload';
 
 // ── Placeholder for future phases ──
 const ComingSoon = ({ page }) => (
@@ -51,14 +55,15 @@ const App = () => {
           }
         >
           <Route path="/dashboard"    element={<Dashboard />} />
-          <Route path="/dsa"          element={<ComingSoon page="DSA Practice" />} />
-          <Route path="/companies"    element={<ComingSoon page="Companies" />} />
+          <Route path="/dsa" element={<ProtectedRoute><DSA /></ProtectedRoute>} />
+          <Route path="/companies" element={<Companies />} />
           <Route path="/resume"       element={<ComingSoon page="Resume" />} />
           <Route path="/applications" element={<ComingSoon page="Applications" />} />
           <Route path="/contests"     element={<ComingSoon page="Contests" />} />
           <Route path="/experiences"  element={<ComingSoon page="Experiences" />} />
           <Route path="/leaderboard"  element={<ComingSoon page="Leaderboard" />} />
-          <Route path="/profile"      element={<ComingSoon page="Profile" />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/bulk-upload" element={<ProtectedRoute><BulkUpload /></ProtectedRoute>} />
         </Route>
 
         {/* ── 404 fallback ── */}

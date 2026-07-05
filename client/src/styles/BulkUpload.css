@@ -1,0 +1,159 @@
+/* Main container */
+.bulk-container {
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+/* Header */
+.bulk-header {
+  margin-bottom: 1.5rem;
+}
+
+.bulk-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.bulk-header p {
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+}
+
+/* Format guide */
+.bulk-guide {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.bulk-guide h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.bulk-guide p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.bulk-guide code {
+  display: block;
+  background: var(--bg-tertiary);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
+
+.guide-note {
+  color: var(--accent-yellow) !important;
+  font-size: 0.8rem !important;
+}
+
+/* Upload area */
+.bulk-upload-area {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Hide default file input */
+.bulk-file-input {
+  display: none;
+}
+
+/* Custom file label */
+.bulk-file-label {
+  flex: 1;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.bulk-file-label:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+/* Upload button */
+.bulk-upload-btn {
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.bulk-upload-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.bulk-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--accent-red);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  color: var(--accent-red);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Result box */
+.bulk-result {
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-green);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.bulk-result h3 {
+  color: var(--accent-green);
+  margin-bottom: 0.75rem;
+}
+
+.result-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.result-inserted {
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.result-skipped {
+  color: var(--text-secondary);
+}
+
+.result-errors h4 {
+  color: var(--accent-yellow);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.result-error-item {
+  color: var(--accent-red);
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}

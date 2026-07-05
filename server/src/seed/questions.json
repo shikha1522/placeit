@@ -1,0 +1,142 @@
+[
+  {
+    "title": "Two Sum",
+    "description": "Find indices of two numbers in an array that add up to a target sum",
+    "difficulty": "easy",
+    "topic": "array",
+    "leetcode_url": "https://leetcode.com/problems/two-sum/"
+  },
+  {
+    "title": "Valid Parentheses",
+    "description": "Check if a string of brackets is valid using a stack",
+    "difficulty": "easy",
+    "topic": "stack",
+    "leetcode_url": "https://leetcode.com/problems/valid-parentheses/"
+  },
+  {
+    "title": "Merge Two Sorted Lists",
+    "description": "Merge two sorted linked lists into one sorted linked list",
+    "difficulty": "easy",
+    "topic": "linked-list",
+    "leetcode_url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+  },
+  {
+    "title": "Best Time to Buy and Sell Stock",
+    "description": "Find the maximum profit from a single buy/sell transaction on stock prices",
+    "difficulty": "easy",
+    "topic": "array",
+    "leetcode_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+  },
+  {
+    "title": "Longest Substring Without Repeating Characters",
+    "description": "Find the length of the longest substring without repeating characters using sliding window",
+    "difficulty": "medium",
+    "topic": "sliding-window",
+    "leetcode_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+  },
+  {
+    "title": "3Sum",
+    "description": "Find all unique triplets in an array that sum to zero",
+    "difficulty": "medium",
+    "topic": "array",
+    "leetcode_url": "https://leetcode.com/problems/3sum/"
+  },
+  {
+    "title": "Binary Tree Level Order Traversal",
+    "description": "Return level order traversal of a binary tree's nodes' values using BFS",
+    "difficulty": "medium",
+    "topic": "tree",
+    "leetcode_url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+  },
+  {
+    "title": "Validate Binary Search Tree",
+    "description": "Check whether a binary tree is a valid binary search tree",
+    "difficulty": "medium",
+    "topic": "tree",
+    "leetcode_url": "https://leetcode.com/problems/validate-binary-search-tree/"
+  },
+  {
+    "title": "Course Schedule",
+    "description": "Determine if all courses can be finished given prerequisite pairs using topological sort",
+    "difficulty": "medium",
+    "topic": "graph",
+    "leetcode_url": "https://leetcode.com/problems/course-schedule/"
+  },
+  {
+    "title": "Coin Change",
+    "description": "Find the fewest number of coins needed to make up a given amount using dynamic programming",
+    "difficulty": "medium",
+    "topic": "dynamic-programming",
+    "leetcode_url": "https://leetcode.com/problems/coin-change/"
+  },
+  {
+    "title": "Longest Increasing Subsequence",
+    "description": "Find the length of the longest strictly increasing subsequence in an array",
+    "difficulty": "medium",
+    "topic": "dynamic-programming",
+    "leetcode_url": "https://leetcode.com/problems/longest-increasing-subsequence/"
+  },
+  {
+    "title": "Kth Largest Element in an Array",
+    "description": "Find the kth largest element in an unsorted array using a heap or quickselect",
+    "difficulty": "medium",
+    "topic": "heap",
+    "leetcode_url": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+  },
+  {
+    "title": "Word Search",
+    "description": "Determine if a word exists in a 2D grid of letters using backtracking",
+    "difficulty": "medium",
+    "topic": "backtracking",
+    "leetcode_url": "https://leetcode.com/problems/word-search/"
+  },
+  {
+    "title": "Trapping Rain Water",
+    "description": "Calculate how much water can be trapped between bars after raining using two pointers",
+    "difficulty": "hard",
+    "topic": "two-pointers",
+    "leetcode_url": "https://leetcode.com/problems/trapping-rain-water/"
+  },
+  {
+    "title": "Median of Two Sorted Arrays",
+    "description": "Find the median of two sorted arrays in logarithmic time using binary search",
+    "difficulty": "hard",
+    "topic": "binary-search",
+    "leetcode_url": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+  },
+  {
+    "title": "Serialize and Deserialize Binary Tree",
+    "description": "Design an algorithm to serialize and deserialize a binary tree to/from a string",
+    "difficulty": "hard",
+    "topic": "tree",
+    "leetcode_url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/"
+  },
+  {
+    "title": "Word Ladder",
+    "description": "Find the shortest transformation sequence length from a begin word to an end word using BFS",
+    "difficulty": "hard",
+    "topic": "graph",
+    "leetcode_url": "https://leetcode.com/problems/word-ladder/"
+  },
+  {
+    "title": "N-Queens",
+    "description": "Place N queens on an N x N chessboard so no two queens attack each other using backtracking",
+    "difficulty": "hard",
+    "topic": "backtracking",
+    "leetcode_url": "https://leetcode.com/problems/n-queens/"
+  },
+  {
+    "title": "Sliding Window Maximum",
+    "description": "Find the maximum value in each sliding window of size k using a deque",
+    "difficulty": "hard",
+    "topic": "sliding-window",
+    "leetcode_url": "https://leetcode.com/problems/sliding-window-maximum/"
+  },
+  {
+    "title": "Minimum Window Substring",
+    "description": "Find the minimum window substring containing all characters of a target string",
+    "difficulty": "hard",
+    "topic": "sliding-window",
+    "leetcode_url": "https://leetcode.com/problems/minimum-window-substring/"
+  }
+]
