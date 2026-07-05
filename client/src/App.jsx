@@ -16,7 +16,10 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import DSA from './pages/DSA';
 import BulkUpload from './pages/BulkUpload';
-
+import Contests from './pages/Contests';
+import AdminCreateContest from './pages/AdminCreateContest';
+import TakeContest from './pages/TakeContest';
+import ContestResult from './pages/ContestResult';
 // ── Placeholder for future phases ──
 const ComingSoon = ({ page }) => (
   <div style={{
@@ -59,11 +62,15 @@ const App = () => {
           <Route path="/companies" element={<Companies />} />
           <Route path="/resume"       element={<ComingSoon page="Resume" />} />
           <Route path="/applications" element={<ComingSoon page="Applications" />} />
-          <Route path="/contests"     element={<ComingSoon page="Contests" />} />
+          <Route path="/contests" element={<Contests />} />
           <Route path="/experiences"  element={<ComingSoon page="Experiences" />} />
           <Route path="/leaderboard"  element={<ComingSoon page="Leaderboard" />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/bulk-upload" element={<ProtectedRoute><BulkUpload /></ProtectedRoute>} />
+          
+   <Route path="/contests/new" element={<AdminCreateContest />} />
+   <Route path="/contests/:id/take" element={<TakeContest />} />
+   <Route path="/contests/:id/results" element={<ContestResult />} />
         </Route>
 
         {/* ── 404 fallback ── */}
