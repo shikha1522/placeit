@@ -53,7 +53,7 @@ const Profile = () => {
   // fetch profile data from backend
   const fetchProfile = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/profile', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
         headers: { Authorization: `Bearer ${token}` }, // send jwt token
       });
       const data = await res.json();                   // parse response
@@ -117,7 +117,7 @@ const Profile = () => {
   const handleSaveProfile = async () => {
     setSaving(true);                                   // show loading on button
     try {
-      const res = await fetch('http://localhost:5000/api/profile', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
         method:  'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ const Profile = () => {
 
     setSaving(true);
     try {
-      const res = await fetch('http://localhost:5000/api/profile/password', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/password`, {
         method:  'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -237,7 +237,7 @@ const Profile = () => {
     formData.append('avatar', file);                   // field name must match multer
 
     try {
-      const res = await fetch('http://localhost:5000/api/profile/avatar', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/avatar`, {
         method:  'PUT',
         headers: { Authorization: `Bearer ${token}` }, // no Content-Type for FormData
         body:    formData,                             // send form data

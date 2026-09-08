@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
 
       try {
         // fetch profile using saved token to restore user state
-        const res = await axios.get('http://localhost:5000/api/profile', {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/profile`, {
           headers: { Authorization: `Bearer ${savedToken}` }, // send token
         });
         setUser(res.data.user);                         // restore user in state
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   // ── Register ───────────────────────────────────────────────
   const register = async (formData) => {
-    const res = await axios.post('http://localhost:5000/api/auth/register', formData);
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, formData);
     setUser(res.data.user);                             // save user in state
     setToken(res.data.token);                           // save token in state
     localStorage.setItem('token', res.data.token);     // save token to survive refresh
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
   // ── Login ──────────────────────────────────────────────────
   const login = async (formData) => {
-    const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, formData);
     setUser(res.data.user);                             // save user in state
     setToken(res.data.token);                           // save token in state
     localStorage.setItem('token', res.data.token);     // persist token

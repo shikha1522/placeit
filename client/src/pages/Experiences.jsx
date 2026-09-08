@@ -24,8 +24,8 @@ const ExperienceModal = ({ experience, companies, onClose, onSave, token }) => {
     setSaving(true);
     try {
       const url = experience?.id
-        ? `http://localhost:5000/api/experiences/${experience.id}`
-        : 'http://localhost:5000/api/experiences';
+        ? `${import.meta.env.VITE_API_URL}/api/experiences/${experience.id}`
+        : `${import.meta.env.VITE_API_URL}/api/experiences`;
       const method = experience?.id ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
@@ -188,14 +188,14 @@ const Experiences = () => {
     setLoading(true);
     try {
       const endpoint = tab === 'mine'
-        ? 'http://localhost:5000/api/experiences/mine'
+        ? `${import.meta.env.VITE_API_URL}/api/experiences/mine`
         : (() => {
             const params = new URLSearchParams();
             if (filters.company_id) params.set('company_id', filters.company_id);
             if (filters.offer_received) params.set('offer_received', filters.offer_received);
             if (filters.sort === 'top') params.set('sort', 'top');
             const qs = params.toString();
-            return `http://localhost:5000/api/experiences${qs ? `?${qs}` : ''}`;
+            return `${import.meta.env.VITE_API_URL}/api/experiences${qs ? `?${qs}` : ''}`;
           })();
 
       const res = await fetch(endpoint, { headers: { Authorization: `Bearer ${token}` } });
@@ -211,7 +211,7 @@ const Experiences = () => {
   // ── Fetch companies for the dropdown/filter ──
   const fetchCompanies = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/companies', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/companies`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -233,7 +233,7 @@ const Experiences = () => {
     e.stopPropagation();
     if (upvoted.has(id)) return; // soft guard: one upvote per session per card
     try {
-      const res = await fetch(`http://localhost:5000/api/experiences/${id}/upvote`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/experiences/${id}/upvote`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -267,7 +267,7 @@ const Experiences = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this experience?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/experiences/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/experiences/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

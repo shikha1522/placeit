@@ -57,7 +57,7 @@ const CompanyModal = ({ company, onClose, onSave, token }) => {
     if (!form.name) return alert('Enter company name first');
     setAutofilling(true);
     try {
-      const res = await fetch('http://localhost:5000/api/companies/autofill', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/companies/autofill`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ company_name: form.name }),
@@ -79,8 +79,8 @@ const CompanyModal = ({ company, onClose, onSave, token }) => {
     setSaving(true);
     try {
       const url    = company?.id
-        ? `http://localhost:5000/api/companies/${company.id}`
-        : 'http://localhost:5000/api/companies';
+        ? `${import.meta.env.VITE_API_URL}/api/companies/${company.id}`
+        :`${import.meta.env.VITE_API_URL}/api/companies`;
       const method = company?.id ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
@@ -399,7 +399,7 @@ const Companies = () => {
       if (filters.min_ctc)  params.append('min_ctc',  filters.min_ctc);
 
       const res = await fetch(
-        `http://localhost:5000/api/companies?${params.toString()}`,
+        `${import.meta.env.VITE_API_URL}/api/companies?${params.toString()}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const data = await res.json();
@@ -436,7 +436,7 @@ const Companies = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this company?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/companies/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/companies/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -86,7 +86,7 @@ const Dashboard = () => {
     const fetchDashboard = async () => {
       try {
         setLoading(true);
-        const res = await fetch("http://localhost:5000/api/dashboard/stats", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dashboard/stats`, {
           headers: {
             // Send JWT token in Authorization header
             Authorization: `Bearer ${token}`,
