@@ -135,36 +135,36 @@ export const getQuestionById = async (req, res) => {
 // Toggle solved status and save notes for a question
 export const solveQuestion = async (req, res) => {
   try {
-    // Get question id from URL and user id from auth middleware
     const { id } = req.params;
     const user_id = req.user.id;
-
-    // Get notes from request body (optional)
     const { notes } = req.body;
 
-    // Check if user_question record already exists
     const existing = await pool.query(
       `SELECT * FROM user_questions WHERE user_id = $1 AND question_id = $2`,
       [user_id, id]
     );
 
+    let newSolvedStatus;
+
     if (existing.rows.length === 0) {
-      // No record exists, create new one with solved = true
       await pool.query(
         `INSERT INTO user_questions (user_id, question_id, solved, notes, solved_at)
          VALUES ($1, $2, true, $3, NOW())`,
         [user_id, id, notes || null]
       );
+      newSolvedStatus = true;
     } else {
-      // Record exists, toggle solved status
       const currentSolved = existing.rows[0].solved;
+      newSolvedStatus = !currentSolved;
       await pool.query(
         `UPDATE user_questions
          SET solved = $1, notes = $2, solved_at = $3
          WHERE user_id = $4 AND question_id = $5`,
-        [!currentSolved, notes || existing.rows[0].notes, !currentSolved ? new Date() : null, user_id, id]
+        [newSolvedStatus, notes || existing.rows[0].notes, newSolvedStatus ? new Date() : null, user_id, id]
       );
     }
+
+    
 
     res.json({ success: true, message: 'Question status updated' });
   } catch (err) {

@@ -91,7 +91,6 @@ const NAV_ITEMS = [
   { path: "/applications",   label: "Applications", Icon: IconBriefcase },
   { path: "/contests",       label: "Contests",     Icon: IconTrophy },
   { path: "/experiences",    label: "Experiences",  Icon: IconChat },
-  { path: "/leaderboard",    label: "Leaderboard",  Icon: IconChart },
   { path: "/profile",        label: "Profile",      Icon: IconUser },
 ];
 

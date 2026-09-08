@@ -34,7 +34,6 @@ const PAGE_TITLES = {
   "/applications": "Applications",
   "/contests":     "Contests",
   "/experiences":  "Experiences",
-  "/leaderboard":  "Leaderboard",
   "/profile":      "Profile",
 };
 

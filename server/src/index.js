@@ -7,6 +7,8 @@ import profileRoutes from './routes/profileRoutes.js'; // import the routes
 import companiesRoutes from './routes/companiesRoutes.js'; 
 import questionsRoutes from './routes/questionsRoutes.js';
 import contestRoutes from "./routes/contestRoutes.js";
+import ratingRoutes from './routes/ratingRoutes.js';
+import experiencesRoutes from './routes/experiencesRoutes.js';
 import './config/db.js';
 
 
@@ -39,6 +41,8 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/companies', companiesRoutes);
 app.use('/api/questions', questionsRoutes);
 app.use("/api/contests", contestRoutes);
+app.use('/api/ratings', ratingRoutes);
+app.use('/api/experiences', experiencesRoutes);
 // this means all routes in authRoutes.js are prefixed with /api/auth
 // so router.post('/register') becomes POST /api/auth/register
 

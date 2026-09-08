@@ -2,7 +2,7 @@
 // (e.g. it might be server/src/db.js or server/src/config/database.js in your repo)
 import pool from "../config/db.js";
 import { generateMCQs, generateResultFeedback } from "../services/geminiService.js";
-
+import { recordContestResult } from "../services/ratingService.js";
 // Derive a live status from start_time + duration, independent of the
 // stored `status` column (which we use for draft/published visibility).
 function computeTimeStatus(start_time, duration_minutes) {
@@ -227,12 +227,41 @@ export const submitContest = async (req, res) => {
       [id, userId, storedPayload, score]
     );
 
+    // ── Rating update: only fires on contest submission, nothing else ──
+    let ratingResult = null;
+    try {
+      // Average score among OTHER submitters so far (needs 3+ to count, per the formula)
+      const avgResult = await pool.query(
+        `SELECT COUNT(*)::int AS submitter_count, COALESCE(AVG(score), 0)::float AS avg_score
+         FROM contest_submissions
+         WHERE contest_id = $1 AND user_id != $2`,
+        [id, userId]
+      );
+
+      const submitterCount = avgResult.rows[0].submitter_count;
+      const contestAverage = submitterCount >= 3 ? avgResult.rows[0].avg_score : null;
+
+      // scoreOutOf30 in ratingService assumes score is already on a 0-30 scale.
+      // Your contest total may not be exactly 30 (totalMarks varies per contest),
+      // so normalize here before passing it in.
+      const normalizedScore = totalMarks > 0 ? (score / totalMarks) * 30 : 0;
+      const normalizedAverage = contestAverage !== null && totalMarks > 0
+        ? (contestAverage / totalMarks) * 30
+        : null;
+
+      ratingResult = await recordContestResult(userId, normalizedScore, normalizedAverage);
+    } catch (ratingErr) {
+      // Never let a rating failure block the contest result from reaching the student
+      console.error("recordContestResult error:", ratingErr);
+    }
+
     res.status(201).json({
       submission: submissionResult.rows[0],
       score,
       totalMarks,
       feedback,
       breakdown,
+      rating: ratingResult, // { before, after, delta, badge } or null if it failed
     });
   } catch (err) {
     console.error("submitContest error:", err);

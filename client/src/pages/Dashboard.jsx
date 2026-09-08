@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import DonutChart from "../components/DonutChart";
 import "../styles/Dashboard.css";
-
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 // ── Helper: convert timestamp to "2h ago", "yesterday", "3 days ago" ──
 const timeAgo = (dateStr) => {
   if (!dateStr) return "";
@@ -149,6 +149,7 @@ const Dashboard = () => {
     upcomingCompanies,
     recentActivity,
     notifications,
+    ratingHistory,
   } = data;
 
   return (
@@ -213,6 +214,41 @@ const Dashboard = () => {
         </div>
 
       </div>
+      {/* ══════════════════════════════════════
+    RATING CARD — score, badge, trend chart
+══════════════════════════════════════ */}
+<div className="card">
+  <div className="rating-card-header">
+    <h2 className="card-title">Your Rating</h2>
+    <span className={`badge-pill badge-pill--${(stats.badge || 'Bronze').toLowerCase()}`}>
+      {stats.badge || 'Bronze'}
+    </span>
+  </div>
+
+  <div className="rating-score">{stats.rating}</div>
+
+  {ratingHistory && ratingHistory.length > 1 ? (
+    <div style={{ width: "100%", height: 160 }}>
+      <ResponsiveContainer>
+        <LineChart data={ratingHistory}>
+          <XAxis
+            dataKey="date"
+            tick={{ fontSize: 11 }}
+            tickFormatter={(d) => new Date(d).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+          />
+          <YAxis tick={{ fontSize: 11 }} width={35} />
+          <Tooltip
+            labelFormatter={(d) => new Date(d).toLocaleDateString()}
+            formatter={(value) => [value, "Rating"]}
+          />
+          <Line type="monotone" dataKey="score" stroke="#7c3aed" strokeWidth={2} dot={false} />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  ) : (
+    <p className="empty-state">Solve a few DSA questions or complete a contest to start tracking your rating trend.</p>
+  )}
+</div>
 
       {/* ══════════════════════════════════════
           MIDDLE ROW: DSA Progress + Upcoming Companies

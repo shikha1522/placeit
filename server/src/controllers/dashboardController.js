@@ -18,6 +18,7 @@ const getDashboardStats = async (req, res) => {
       recentActivity,
       userInfo,
       notifications,
+      ratingHistory,
     ] = await Promise.all([
 
       pool.query(`
@@ -30,6 +31,8 @@ const getDashboardStats = async (req, res) => {
         JOIN questions q ON q.id = uq.question_id
         WHERE uq.user_id = $1 AND uq.solved = true
       `, [userId]),
+
+       
 
       pool.query(`SELECT COUNT(*) AS total FROM questions`),
 
@@ -108,6 +111,13 @@ const getDashboardStats = async (req, res) => {
         ORDER BY created_at DESC
         LIMIT 3
       `, [userId]),
+       pool.query(`
+  SELECT rating_after AS score, created_at
+  FROM rating_history
+  WHERE user_id = $1
+  ORDER BY created_at ASC
+  LIMIT 30
+`, [userId]),
     ]);
 
     const dsa = dsaStats.rows[0];
@@ -129,7 +139,7 @@ const getDashboardStats = async (req, res) => {
           dsaTotal: parseInt(dsaTotal.rows[0].total) || 0,
           companies: parseInt(companiesStats.rows[0].total) || 0,
           applications: parseInt(applicationsStats.rows[0].total) || 0,
-          rating: parseInt(rating) || 1200,
+         rating: Number.isNaN(parseInt(rating)) ? 0 : parseInt(rating),
         },
         dsaProgress: {
           easy: parseInt(dsa.easy_solved) || 0,
@@ -137,6 +147,10 @@ const getDashboardStats = async (req, res) => {
           hard: parseInt(dsa.hard_solved) || 0,
           total: parseInt(dsa.total_solved) || 0,
         },
+        ratingHistory: ratingHistory.rows.map(r => ({
+  score: r.score,
+  date: r.created_at,
+})),
         upcomingCompanies: upcomingCompanies.rows.map(c => ({
           id: c.id,
           name: c.name,
