@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 5000;
 // cors: allows React (localhost:5173) to call this API (localhost:5000)
 // without this the browser blocks all requests from frontend to backend
 app.use(cors({
-  origin: 'http://localhost:5173', // only allow our React frontend
+  origin: 'https://placeit-six.vercel.app', // only allow our React frontend
   credentials: true,               // allow JWT token to be sent in headers
 }));
 

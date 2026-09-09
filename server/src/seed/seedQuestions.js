@@ -3,6 +3,8 @@ import pg from 'pg';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import env from 'dotenv';
+env.config();
 
 // Get current directory (needed for ES modules)
 const __filename = fileURLToPath(import.meta.url);
@@ -10,7 +12,10 @@ const __dirname = path.dirname(__filename);
 
 // PostgreSQL client setup
 const client = new pg.Client({
-  connectionString: 'postgresql://postgres:vanu1515@localhost:5432/placeit'
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // Main seed function
