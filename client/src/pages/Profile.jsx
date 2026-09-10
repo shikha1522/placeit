@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';   // react hooks
 import { useAuth } from '../context/AuthContext';       // global auth state
-import '../styles/Profile.css';                         // profile styles
+import '../styles/Profile.css';   
+import env from 'dotenv';
+env.config();                      // profile styles
 
 const Profile = () => {
   const { token, user: authUser, setUser } = useAuth(); // get token + user from context

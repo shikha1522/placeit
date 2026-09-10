@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "../styles/Contest.css";
+import env from 'dotenv';
+env.config();
 
 // ASSUMPTION: JWT stored in localStorage under "token", same as your other
 // Phase 3/5/7 pages. Adjust the header helper if your app stores it elsewhere.

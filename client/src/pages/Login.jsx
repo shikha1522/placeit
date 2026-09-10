@@ -6,7 +6,8 @@ import { useState } from 'react'; // useState lets us track form input values
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Link is used instead of <a> so React handles navigation without page reload
 import '../styles/Auth.css'; // all styles specific to login/register pages
-
+import env from 'dotenv';
+env.config();
 const Login = () => {
 
   // showPassword toggles the password field between hidden and visible

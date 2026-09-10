@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/Contest.css";
+import env from 'dotenv';
+env.config();
 
 function authHeaders() {
   const token = localStorage.getItem("token");

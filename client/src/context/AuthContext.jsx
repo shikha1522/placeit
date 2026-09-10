@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useState, useEffect } from 'react'; // added useEffect
 import axios from 'axios';
-
+import env from 'dotenv';
+env.config();
 // creates a global context — any component can access this
 const AuthContext = createContext();
 

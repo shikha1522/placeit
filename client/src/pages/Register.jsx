@@ -4,7 +4,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import '../styles/Auth.css'; // shares the same stylesheet as Login
+import '../styles/Auth.css'; 
+import env from 'dotenv';
+env.config();// shares the same stylesheet as Login
 
 const Register = () => {
 

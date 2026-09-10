@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Companies.css';
+import env from 'dotenv';
+env.config();
 
 // ── Company status badge colors ──
 const STATUS_COLORS = {

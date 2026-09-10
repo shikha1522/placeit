@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { useAuth } from './context/AuthContext';
 import Profile from './pages/Profile';
+import env from 'dotenv';
+env.config();
 // ── Layouts ──
 import DashboardLayout from './layouts/DashboardLayout';
 import Companies from './pages/Companies';
