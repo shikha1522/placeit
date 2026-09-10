@@ -17,8 +17,8 @@ export default function ContestResult() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`/api/contests/${id}/my-result`, { headers: authHeaders() }).then((r) => r.json()),
-      fetch(`/api/contests/${id}/leaderboard`, { headers: authHeaders() }).then((r) => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/contests/${id}/my-result`, { headers: authHeaders() }).then((r) => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/contests/${id}/leaderboard`, { headers: authHeaders() }).then((r) => r.json()),
     ])
       .then(([myResult, board]) => {
         if (myResult.error) setError(myResult.error);
