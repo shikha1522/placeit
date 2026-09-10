@@ -19,7 +19,7 @@ export default function Contests() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("/api/contests", { headers: authHeaders() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/contests`, { headers: authHeaders() })
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setContests(data);

@@ -26,7 +26,7 @@ export default function TakeContest() {
     submittedRef.current = true;
     setSubmitting(true);
     try {
-      const res = await fetch(`/api/contests/${id}/submit`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contests/${id}/submit`, {
         method: "POST",
         headers: authHeaders(),
         body: JSON.stringify({ answers }),
@@ -42,7 +42,7 @@ export default function TakeContest() {
   }, [id, answers, navigate]);
 
   useEffect(() => {
-    fetch(`/api/contests/${id}/questions`, { headers: authHeaders() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/contests/${id}/questions`, { headers: authHeaders() })
       .then(async (res) => {
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Could not load contest");

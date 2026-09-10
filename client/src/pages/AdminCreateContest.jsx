@@ -35,7 +35,7 @@ export default function AdminCreateContest() {
     setResult(null);
     setLoading(true);
     try {
-      const res = await fetch("/api/contests/generate", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contests/generate", {
         method: "POST",
         headers: authHeaders(),
         body: JSON.stringify({
