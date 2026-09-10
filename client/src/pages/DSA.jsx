@@ -98,28 +98,29 @@ const DSA = () => {
   // Handle marking question as solved
   // Handle marking question as solved/unsolved
 const handleSolve = async (id) => {
- try {
-  await fetch(`${import.meta.env.VITE_API_URL}/api/questions/${id}/solve`, {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-  });
-}
+  try {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/questions/${id}/solve`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
 
     // Update only this question's solved status locally, no full refetch
     setQuestions(prev =>
-      prev.map(q => q.id === id ? { ...q, solved: !q.solved } : q)
+      prev.map(q =>
+        q.id === id ? { ...q, solved: !q.solved } : q
+      )
     );
 
-    // Refresh stats only (small, doesn't trigger page loading state)
+    // Refresh stats only
     fetchStats();
+
   } catch (err) {
     console.error('Solve error:', err);
   }
 };
-
   // Reset all filters to default
   const handleReset = () => {
     setSearch('');
