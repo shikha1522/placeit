@@ -2,8 +2,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/DSA.css';
-import env from 'dotenv';
-env.config();
 
 // DSA Questions page component
 const DSA = () => {

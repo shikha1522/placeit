@@ -8,8 +8,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import "../styles/DashboardLayout.css";
-import env from 'dotenv';
-env.config();
+
 
 const DashboardLayout = () => {
   // sidebarOpen controls the mobile hamburger toggle

@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Experiences.css';
-import env from 'dotenv';
-env.config();
 
 // ── Post / Edit Experience Modal ──
 const ExperienceModal = ({ experience, companies, onClose, onSave, token }) => {

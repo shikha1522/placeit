@@ -7,8 +7,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import DonutChart from "../components/DonutChart";
 import "../styles/Dashboard.css";
-import env from 'dotenv';
-env.config();
+
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 // ── Helper: convert timestamp to "2h ago", "yesterday", "3 days ago" ──
 const timeAgo = (dateStr) => {

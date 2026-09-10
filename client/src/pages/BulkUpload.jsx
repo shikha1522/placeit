@@ -1,8 +1,7 @@
 // Import required hooks
 import { useState } from 'react';
 import '../styles/BulkUpload.css';
-import env from 'dotenv';
-env.config();
+
 
 // Admin bulk upload page component
 const BulkUpload = () => {
