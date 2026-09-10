@@ -50,7 +50,7 @@ const BulkUpload = () => {
       formData.append('file', file);
 
       // Send to backend
-      const res = await fetch('/api/questions/bulk-upload', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/questions/bulk-upload`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: formData

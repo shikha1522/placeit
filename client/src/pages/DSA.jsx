@@ -48,9 +48,12 @@ const DSA = () => {
       params.append('page', page);
 
       // Call backend API
-      const res = await fetch(`/api/questions?${params.toString()}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+     const res = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/questions?${params.toString()}`,
+  {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+);
 
       const data = await res.json();
 
@@ -69,9 +72,9 @@ const DSA = () => {
   // Fetch user stats
   const fetchStats = async () => {
     try {
-      const res = await fetch('/api/questions/stats', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/questions/stats`, {
+  headers: { Authorization: `Bearer ${token}` }
+});
       const data = await res.json();
       if (data.success) setStats(data.byDifficulty);
     } catch (err) {
@@ -95,14 +98,15 @@ const DSA = () => {
   // Handle marking question as solved
   // Handle marking question as solved/unsolved
 const handleSolve = async (id) => {
-  try {
-    await fetch(`/api/questions/${id}/solve`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
+ try {
+  await fetch(`${import.meta.env.VITE_API_URL}/api/questions/${id}/solve`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  });
+}
 
     // Update only this question's solved status locally, no full refetch
     setQuestions(prev =>
